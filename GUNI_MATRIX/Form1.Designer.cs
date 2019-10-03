@@ -35,16 +35,24 @@
             this.matrix2DataGridView = new System.Windows.Forms.DataGridView();
             this.matrix1DataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.sizeM2Label = new System.Windows.Forms.Label();
-            this.sizeM2TextBox = new System.Windows.Forms.TextBox();
-            this.sizeM1Label = new System.Windows.Forms.Label();
-            this.sizeM1TextBox = new System.Windows.Forms.TextBox();
+            this.colM2Label = new System.Windows.Forms.Label();
+            this.colM2TextBox = new System.Windows.Forms.TextBox();
+            this.rowM1Label = new System.Windows.Forms.Label();
+            this.rowM1TextBox = new System.Windows.Forms.TextBox();
+            this.multiplicationButton = new System.Windows.Forms.Button();
+            this.rowM2Label = new System.Windows.Forms.Label();
+            this.rowM2TextBox = new System.Windows.Forms.TextBox();
+            this.colM1Label = new System.Windows.Forms.Label();
+            this.colM1TextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.closeButton = new System.Windows.Forms.Button();
+            this.swapButton = new System.Windows.Forms.Button();
+            this.resTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matrixResDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrix2DataGridView)).BeginInit();
@@ -56,12 +64,15 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1000, 618);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabStop = false;
+            this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
             // 
             // tabPage1
             // 
@@ -91,11 +102,13 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.resTextBox);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.Size = new System.Drawing.Size(986, 586);
             this.splitContainer1.SplitterDistance = 207;
             this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.TabStop = false;
             // 
             // matrixResDataGridView
             // 
@@ -139,8 +152,7 @@
             this.matrix2DataGridView.RowHeadersVisible = false;
             this.matrix2DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.matrix2DataGridView.Size = new System.Drawing.Size(240, 175);
-            this.matrix2DataGridView.TabIndex = 1;
-            this.matrix2DataGridView.TabStop = false;
+            this.matrix2DataGridView.TabIndex = 5;
             this.matrix2DataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.matrixDataGridView_EditingControlShowing);
             // 
             // matrix1DataGridView
@@ -162,56 +174,108 @@
             this.matrix1DataGridView.RowHeadersVisible = false;
             this.matrix1DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.matrix1DataGridView.Size = new System.Drawing.Size(240, 175);
-            this.matrix1DataGridView.TabIndex = 0;
-            this.matrix1DataGridView.TabStop = false;
+            this.matrix1DataGridView.TabIndex = 4;
             this.matrix1DataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.matrixDataGridView_EditingControlShowing);
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.sizeM2Label);
-            this.panel1.Controls.Add(this.sizeM2TextBox);
-            this.panel1.Controls.Add(this.sizeM1Label);
-            this.panel1.Controls.Add(this.sizeM1TextBox);
+            this.panel1.Controls.Add(this.swapButton);
+            this.panel1.Controls.Add(this.colM2Label);
+            this.panel1.Controls.Add(this.colM2TextBox);
+            this.panel1.Controls.Add(this.rowM1Label);
+            this.panel1.Controls.Add(this.rowM1TextBox);
+            this.panel1.Controls.Add(this.multiplicationButton);
+            this.panel1.Controls.Add(this.rowM2Label);
+            this.panel1.Controls.Add(this.rowM2TextBox);
+            this.panel1.Controls.Add(this.colM1Label);
+            this.panel1.Controls.Add(this.colM1TextBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(986, 32);
             this.panel1.TabIndex = 3;
             // 
-            // sizeM2Label
+            // colM2Label
             // 
-            this.sizeM2Label.Location = new System.Drawing.Point(120, 10);
-            this.sizeM2Label.Name = "sizeM2Label";
-            this.sizeM2Label.Size = new System.Drawing.Size(45, 14);
-            this.sizeM2Label.TabIndex = 3;
-            this.sizeM2Label.Text = "SizeM2:";
+            this.colM2Label.Location = new System.Drawing.Point(292, 8);
+            this.colM2Label.Name = "colM2Label";
+            this.colM2Label.Size = new System.Drawing.Size(32, 14);
+            this.colM2Label.TabIndex = 8;
+            this.colM2Label.Text = "Col2:";
             // 
-            // sizeM2TextBox
+            // colM2TextBox
             // 
-            this.sizeM2TextBox.Location = new System.Drawing.Point(165, 7);
-            this.sizeM2TextBox.Multiline = true;
-            this.sizeM2TextBox.Name = "sizeM2TextBox";
-            this.sizeM2TextBox.Size = new System.Drawing.Size(56, 22);
-            this.sizeM2TextBox.TabIndex = 2;
-            this.sizeM2TextBox.TextChanged += new System.EventHandler(this.sizeM2TextBox_TextChanged);
+            this.colM2TextBox.Location = new System.Drawing.Point(330, 5);
+            this.colM2TextBox.Multiline = true;
+            this.colM2TextBox.Name = "colM2TextBox";
+            this.colM2TextBox.Size = new System.Drawing.Size(56, 22);
+            this.colM2TextBox.TabIndex = 3;
+            this.colM2TextBox.TextChanged += new System.EventHandler(this.colM2TextBox_TextChanged);
             // 
-            // sizeM1Label
+            // rowM1Label
             // 
-            this.sizeM1Label.Location = new System.Drawing.Point(10, 10);
-            this.sizeM1Label.Name = "sizeM1Label";
-            this.sizeM1Label.Size = new System.Drawing.Size(45, 14);
-            this.sizeM1Label.TabIndex = 1;
-            this.sizeM1Label.Text = "SizeM1:";
+            this.rowM1Label.Location = new System.Drawing.Point(117, 8);
+            this.rowM1Label.Name = "rowM1Label";
+            this.rowM1Label.Size = new System.Drawing.Size(45, 14);
+            this.rowM1Label.TabIndex = 6;
+            this.rowM1Label.Text = "Row1:";
             // 
-            // sizeM1TextBox
+            // rowM1TextBox
             // 
-            this.sizeM1TextBox.Location = new System.Drawing.Point(55, 7);
-            this.sizeM1TextBox.Multiline = true;
-            this.sizeM1TextBox.Name = "sizeM1TextBox";
-            this.sizeM1TextBox.Size = new System.Drawing.Size(56, 22);
-            this.sizeM1TextBox.TabIndex = 0;
-            this.sizeM1TextBox.TextChanged += new System.EventHandler(this.sizeM1TextBox_TextChanged);
+            this.rowM1TextBox.Location = new System.Drawing.Point(168, 5);
+            this.rowM1TextBox.Multiline = true;
+            this.rowM1TextBox.Name = "rowM1TextBox";
+            this.rowM1TextBox.Size = new System.Drawing.Size(56, 22);
+            this.rowM1TextBox.TabIndex = 1;
+            this.rowM1TextBox.TextChanged += new System.EventHandler(this.rowM1TextBox_TextChanged);
+            // 
+            // multiplicationButton
+            // 
+            this.multiplicationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.multiplicationButton.Location = new System.Drawing.Point(499, 7);
+            this.multiplicationButton.Name = "multiplicationButton";
+            this.multiplicationButton.Size = new System.Drawing.Size(90, 22);
+            this.multiplicationButton.TabIndex = 5;
+            this.multiplicationButton.Text = "Multiplication";
+            this.multiplicationButton.UseVisualStyleBackColor = true;
+            this.multiplicationButton.Click += new System.EventHandler(this.multiplicationButton_Click);
+            this.multiplicationButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
+            this.multiplicationButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
+            // 
+            // rowM2Label
+            // 
+            this.rowM2Label.Location = new System.Drawing.Point(392, 10);
+            this.rowM2Label.Name = "rowM2Label";
+            this.rowM2Label.Size = new System.Drawing.Size(45, 14);
+            this.rowM2Label.TabIndex = 3;
+            this.rowM2Label.Text = "Row2:";
+            // 
+            // rowM2TextBox
+            // 
+            this.rowM2TextBox.Location = new System.Drawing.Point(437, 7);
+            this.rowM2TextBox.Multiline = true;
+            this.rowM2TextBox.Name = "rowM2TextBox";
+            this.rowM2TextBox.Size = new System.Drawing.Size(56, 22);
+            this.rowM2TextBox.TabIndex = 4;
+            this.rowM2TextBox.TextChanged += new System.EventHandler(this.rowM2TextBox_TextChanged);
+            // 
+            // colM1Label
+            // 
+            this.colM1Label.Location = new System.Drawing.Point(10, 10);
+            this.colM1Label.Name = "colM1Label";
+            this.colM1Label.Size = new System.Drawing.Size(45, 14);
+            this.colM1Label.TabIndex = 1;
+            this.colM1Label.Text = "Col1:";
+            // 
+            // colM1TextBox
+            // 
+            this.colM1TextBox.Location = new System.Drawing.Point(55, 7);
+            this.colM1TextBox.Multiline = true;
+            this.colM1TextBox.Name = "colM1TextBox";
+            this.colM1TextBox.Size = new System.Drawing.Size(56, 22);
+            this.colM1TextBox.TabIndex = 0;
+            this.colM1TextBox.TextChanged += new System.EventHandler(this.colM1TextBox_TextChanged);
             // 
             // tabPage2
             // 
@@ -232,11 +296,35 @@
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(35, 22);
             this.closeButton.TabIndex = 1;
+            this.closeButton.TabStop = false;
             this.closeButton.Text = "X";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             this.closeButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
             this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
+            // 
+            // swapButton
+            // 
+            this.swapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.swapButton.Location = new System.Drawing.Point(230, 5);
+            this.swapButton.Name = "swapButton";
+            this.swapButton.Size = new System.Drawing.Size(56, 22);
+            this.swapButton.TabIndex = 2;
+            this.swapButton.Text = "Swap";
+            this.swapButton.UseVisualStyleBackColor = true;
+            this.swapButton.Click += new System.EventHandler(this.swapButton_Click);
+            // 
+            // resTextBox
+            // 
+            this.resTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.resTextBox.Location = new System.Drawing.Point(0, 0);
+            this.resTextBox.Multiline = true;
+            this.resTextBox.Name = "resTextBox";
+            this.resTextBox.ReadOnly = true;
+            this.resTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.resTextBox.Size = new System.Drawing.Size(986, 375);
+            this.resTextBox.TabIndex = 0;
+            this.resTextBox.TabStop = false;
             // 
             // Form1
             // 
@@ -245,13 +333,17 @@
             this.ClientSize = new System.Drawing.Size(1000, 618);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.tabControl1);
+            this.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.matrixResDataGridView)).EndInit();
@@ -269,15 +361,22 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox sizeM1TextBox;
+        private System.Windows.Forms.TextBox colM1TextBox;
         private System.Windows.Forms.DataGridView matrixResDataGridView;
         private System.Windows.Forms.DataGridView matrix2DataGridView;
         private System.Windows.Forms.DataGridView matrix1DataGridView;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.Label sizeM1Label;
-        private System.Windows.Forms.Label sizeM2Label;
-        private System.Windows.Forms.TextBox sizeM2TextBox;
+        private System.Windows.Forms.Label colM1Label;
+        private System.Windows.Forms.Label rowM2Label;
+        private System.Windows.Forms.TextBox rowM2TextBox;
+        private System.Windows.Forms.Button multiplicationButton;
+        private System.Windows.Forms.Label rowM1Label;
+        private System.Windows.Forms.TextBox rowM1TextBox;
+        private System.Windows.Forms.Label colM2Label;
+        private System.Windows.Forms.TextBox colM2TextBox;
+        private System.Windows.Forms.Button swapButton;
+        private System.Windows.Forms.TextBox resTextBox;
     }
 }
 
