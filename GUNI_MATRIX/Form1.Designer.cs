@@ -35,6 +35,7 @@
             this.matrix2DataGridView = new System.Windows.Forms.DataGridView();
             this.matrix1DataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.swapButton = new System.Windows.Forms.Button();
             this.colM2Label = new System.Windows.Forms.Label();
             this.colM2TextBox = new System.Windows.Forms.TextBox();
             this.rowM1Label = new System.Windows.Forms.Label();
@@ -44,10 +45,10 @@
             this.rowM2TextBox = new System.Windows.Forms.TextBox();
             this.colM1Label = new System.Windows.Forms.Label();
             this.colM1TextBox = new System.Windows.Forms.TextBox();
+            this.resTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.closeButton = new System.Windows.Forms.Button();
-            this.swapButton = new System.Windows.Forms.Button();
-            this.resTextBox = new System.Windows.Forms.TextBox();
+            this.detButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -180,6 +181,7 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.detButton);
             this.panel1.Controls.Add(this.swapButton);
             this.panel1.Controls.Add(this.colM2Label);
             this.panel1.Controls.Add(this.colM2TextBox);
@@ -196,9 +198,20 @@
             this.panel1.Size = new System.Drawing.Size(986, 32);
             this.panel1.TabIndex = 3;
             // 
+            // swapButton
+            // 
+            this.swapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.swapButton.Location = new System.Drawing.Point(230, 7);
+            this.swapButton.Name = "swapButton";
+            this.swapButton.Size = new System.Drawing.Size(56, 22);
+            this.swapButton.TabIndex = 2;
+            this.swapButton.Text = "Swap";
+            this.swapButton.UseVisualStyleBackColor = true;
+            this.swapButton.Click += new System.EventHandler(this.swapButton_Click);
+            // 
             // colM2Label
             // 
-            this.colM2Label.Location = new System.Drawing.Point(292, 8);
+            this.colM2Label.Location = new System.Drawing.Point(292, 10);
             this.colM2Label.Name = "colM2Label";
             this.colM2Label.Size = new System.Drawing.Size(32, 14);
             this.colM2Label.TabIndex = 8;
@@ -206,7 +219,7 @@
             // 
             // colM2TextBox
             // 
-            this.colM2TextBox.Location = new System.Drawing.Point(330, 5);
+            this.colM2TextBox.Location = new System.Drawing.Point(330, 7);
             this.colM2TextBox.Multiline = true;
             this.colM2TextBox.Name = "colM2TextBox";
             this.colM2TextBox.Size = new System.Drawing.Size(56, 22);
@@ -215,7 +228,7 @@
             // 
             // rowM1Label
             // 
-            this.rowM1Label.Location = new System.Drawing.Point(117, 8);
+            this.rowM1Label.Location = new System.Drawing.Point(117, 10);
             this.rowM1Label.Name = "rowM1Label";
             this.rowM1Label.Size = new System.Drawing.Size(45, 14);
             this.rowM1Label.TabIndex = 6;
@@ -223,7 +236,7 @@
             // 
             // rowM1TextBox
             // 
-            this.rowM1TextBox.Location = new System.Drawing.Point(168, 5);
+            this.rowM1TextBox.Location = new System.Drawing.Point(168, 7);
             this.rowM1TextBox.Multiline = true;
             this.rowM1TextBox.Name = "rowM1TextBox";
             this.rowM1TextBox.Size = new System.Drawing.Size(56, 22);
@@ -240,8 +253,8 @@
             this.multiplicationButton.Text = "Multiplication";
             this.multiplicationButton.UseVisualStyleBackColor = true;
             this.multiplicationButton.Click += new System.EventHandler(this.multiplicationButton_Click);
-            this.multiplicationButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
-            this.multiplicationButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
+            this.multiplicationButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.multiplicationButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // rowM2Label
             // 
@@ -277,6 +290,18 @@
             this.colM1TextBox.TabIndex = 0;
             this.colM1TextBox.TextChanged += new System.EventHandler(this.colM1TextBox_TextChanged);
             // 
+            // resTextBox
+            // 
+            this.resTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.resTextBox.Location = new System.Drawing.Point(0, 0);
+            this.resTextBox.Multiline = true;
+            this.resTextBox.Name = "resTextBox";
+            this.resTextBox.ReadOnly = true;
+            this.resTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.resTextBox.Size = new System.Drawing.Size(986, 375);
+            this.resTextBox.TabIndex = 0;
+            this.resTextBox.TabStop = false;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -300,31 +325,21 @@
             this.closeButton.Text = "X";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
-            this.closeButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
-            this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
+            this.closeButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.closeButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
-            // swapButton
+            // detButton
             // 
-            this.swapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.swapButton.Location = new System.Drawing.Point(230, 5);
-            this.swapButton.Name = "swapButton";
-            this.swapButton.Size = new System.Drawing.Size(56, 22);
-            this.swapButton.TabIndex = 2;
-            this.swapButton.Text = "Swap";
-            this.swapButton.UseVisualStyleBackColor = true;
-            this.swapButton.Click += new System.EventHandler(this.swapButton_Click);
-            // 
-            // resTextBox
-            // 
-            this.resTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.resTextBox.Location = new System.Drawing.Point(0, 0);
-            this.resTextBox.Multiline = true;
-            this.resTextBox.Name = "resTextBox";
-            this.resTextBox.ReadOnly = true;
-            this.resTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.resTextBox.Size = new System.Drawing.Size(986, 375);
-            this.resTextBox.TabIndex = 0;
-            this.resTextBox.TabStop = false;
+            this.detButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.detButton.Location = new System.Drawing.Point(595, 7);
+            this.detButton.Name = "detButton";
+            this.detButton.Size = new System.Drawing.Size(90, 22);
+            this.detButton.TabIndex = 9;
+            this.detButton.Text = "Determinant";
+            this.detButton.UseVisualStyleBackColor = true;
+            this.detButton.Click += new System.EventHandler(this.detButton_Click);
+            this.detButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.detButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // Form1
             // 
@@ -377,6 +392,7 @@
         private System.Windows.Forms.TextBox colM2TextBox;
         private System.Windows.Forms.Button swapButton;
         private System.Windows.Forms.TextBox resTextBox;
+        private System.Windows.Forms.Button detButton;
     }
 }
 

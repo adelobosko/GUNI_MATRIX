@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GUNI_MATRIX
 {
@@ -139,9 +134,42 @@ namespace GUNI_MATRIX
             return DownSize(fvA);
         }
 
+        public static FractionValue operator +(FractionValue fvA, int b)
+        {
+            var fvB = new FractionValue(b,1);
+            if (fvA.Denominator != fvB.Denominator)
+            {
+                fvA.Numerator *= fvB.Denominator;
+                fvB.Numerator *= fvA.Denominator;
+                fvA.Denominator *= fvB.Denominator;
+                fvA.Numerator += fvB.Numerator;
+                return DownSize(fvA);
+            }
+
+            fvA.Numerator += fvB.Numerator;
+            return DownSize(fvA);
+        }
+
 
         public static FractionValue operator -(FractionValue fvA, FractionValue fvB)
         {
+            if (fvA.Denominator != fvB.Denominator)
+            {
+                fvA.Numerator *= fvB.Denominator;
+                fvB.Numerator *= fvA.Denominator;
+                fvA.Denominator *= fvB.Denominator;
+                fvA.Numerator -= fvB.Numerator;
+                return DownSize(fvA);
+            }
+
+            fvA.Numerator -= fvB.Numerator;
+            return DownSize(fvA);
+        }
+
+
+        public static FractionValue operator -(FractionValue fvA, int b)
+        {
+            var fvB = new FractionValue(b, 1);
             if (fvA.Denominator != fvB.Denominator)
             {
                 fvA.Numerator *= fvB.Denominator;
@@ -163,9 +191,25 @@ namespace GUNI_MATRIX
             return DownSize(fvA);
         }
 
+        public static FractionValue operator *(FractionValue fvA, int b)
+        {
+            var fvB = new FractionValue(b, 1);
+            fvA.Numerator *= fvB.Numerator;
+            fvA.Denominator *= fvB.Denominator;
+            return DownSize(fvA);
+        }
+
 
         public static FractionValue operator /(FractionValue fvA, FractionValue fvB)
         {
+            fvA.Numerator *= fvB.Denominator;
+            fvA.Denominator *= fvB.Numerator;
+            return DownSize(fvA);
+        }
+
+        public static FractionValue operator /(FractionValue fvA, int b)
+        {
+            var fvB = new FractionValue(b, 1);
             fvA.Numerator *= fvB.Denominator;
             fvA.Denominator *= fvB.Numerator;
             return DownSize(fvA);
