@@ -160,10 +160,49 @@ namespace GUNI_MATRIX
             }
         }
 
+        private void PrintFractionMatrixToDataGrid(DataGridView dataGridView, FractionValue[,] res)
+        {
+            dataGridView.RowCount = res.GetLength(0);
+            dataGridView.ColumnCount = res.GetLength(1);
+
+
+            for (var i = 0; i < dataGridView.RowCount; i++)
+            {
+                for (var j = 0; j < dataGridView.ColumnCount; j++)
+                {
+                    dataGridView[j, i].Value = res[i, j].ToString();
+                }
+            }
+        }
+
+        private FractionValue[,] GetFractialMatrixFromDataGrid(DataGridView dataGrid)
+        {
+            var res = new FractionValue[dataGrid.RowCount, dataGrid.ColumnCount];
+
+            for (var i = 0; i < dataGrid.RowCount; i++)
+            {
+                for (var j = 0; j < dataGrid.ColumnCount; j++)
+                {
+                    try
+                    {
+                        res[i, j] = new FractionValue(dataGrid[j, i].Value.ToString());
+                    }
+                    catch/* (Exception e)*/
+                    {
+                        res[i, j] = new FractionValue(1,1);
+                        dataGrid[j, i].Value = "1";
+                    }
+
+                }
+            }
+
+            return res;
+        }
+
         private void multiplicationButton_Click(object sender, EventArgs e)
         {
-            var arr1 = GetDoubleMatrixFromDataGrid(matrix1DataGridView);
-            var arr2 = GetDoubleMatrixFromDataGrid(matrix2DataGridView);
+            var arr1 = GetFractialMatrixFromDataGrid(matrix1DataGridView);
+            var arr2 = GetFractialMatrixFromDataGrid(matrix2DataGridView);
 
             if (arr1.GetLength(1) != arr2.GetLength(0))
             {
@@ -174,7 +213,7 @@ namespace GUNI_MATRIX
             var inDetal = new StringBuilder("");
             var res = Matrix.Multiplication(arr1, arr2, ref inDetal);
             
-            PrintDoubleMatrixToDataGrid(matrixResDataGridView, res);
+            PrintFractionMatrixToDataGrid(matrixResDataGridView, res);
 
             resTextBox.Text = inDetal.ToString();
         }
