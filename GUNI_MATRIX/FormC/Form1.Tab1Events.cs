@@ -180,7 +180,7 @@ namespace GUNI_MATRIX
         private void mulOnDigitButton_Click(object sender, EventArgs e)
         {
             var value = "";
-            if (TMP.InputBox("New document", "New document name:", ref value) != DialogResult.OK)
+            if (TMP.InputBox("Input FractalValue", "Input FractalValue like \"1/12\" or \"7\":", ref value) != DialogResult.OK)
             {
                 return;
             }
