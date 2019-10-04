@@ -51,7 +51,17 @@
             this.colM1TextBox = new System.Windows.Forms.TextBox();
             this.resTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.matrix3DataGridView = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.exceptButton = new System.Windows.Forms.Button();
+            this.row3Label = new System.Windows.Forms.Label();
+            this.row3TextBox = new System.Windows.Forms.TextBox();
+            this.col3Label = new System.Windows.Forms.Label();
+            this.col3TextBox = new System.Windows.Forms.TextBox();
             this.closeButton = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -62,6 +72,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.matrix2DataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrix1DataGridView)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.matrix3DataGridView)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -86,7 +104,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(992, 592);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "MulMatrix";
+            this.tabPage1.Text = "MatrixBase";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -201,6 +219,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
+            this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel1.Size = new System.Drawing.Size(986, 32);
             this.panel1.TabIndex = 3;
             // 
@@ -362,13 +381,137 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.splitContainer2);
+            this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(992, 592);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Jordan\'sExceptions";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 35);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.matrix3DataGridView);
+            this.splitContainer2.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.panel3);
+            this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer2.Size = new System.Drawing.Size(986, 554);
+            this.splitContainer2.SplitterDistance = 173;
+            this.splitContainer2.TabIndex = 1;
+            this.splitContainer2.TabStop = false;
+            // 
+            // matrix3DataGridView
+            // 
+            this.matrix3DataGridView.AllowUserToAddRows = false;
+            this.matrix3DataGridView.AllowUserToDeleteRows = false;
+            this.matrix3DataGridView.AllowUserToResizeColumns = false;
+            this.matrix3DataGridView.AllowUserToResizeRows = false;
+            this.matrix3DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.matrix3DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.matrix3DataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.matrix3DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.matrix3DataGridView.ColumnHeadersVisible = false;
+            this.matrix3DataGridView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.matrix3DataGridView.Location = new System.Drawing.Point(0, 0);
+            this.matrix3DataGridView.MultiSelect = false;
+            this.matrix3DataGridView.Name = "matrix3DataGridView";
+            this.matrix3DataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.matrix3DataGridView.RowHeadersVisible = false;
+            this.matrix3DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.matrix3DataGridView.Size = new System.Drawing.Size(173, 232);
+            this.matrix3DataGridView.TabIndex = 4;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(809, 340);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.exceptButton);
+            this.panel2.Controls.Add(this.row3Label);
+            this.panel2.Controls.Add(this.row3TextBox);
+            this.panel2.Controls.Add(this.col3Label);
+            this.panel2.Controls.Add(this.col3TextBox);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(986, 32);
+            this.panel2.TabIndex = 3;
+            // 
+            // exceptButton
+            // 
+            this.exceptButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exceptButton.Location = new System.Drawing.Point(230, 7);
+            this.exceptButton.Name = "exceptButton";
+            this.exceptButton.Size = new System.Drawing.Size(114, 22);
+            this.exceptButton.TabIndex = 9;
+            this.exceptButton.Text = "Jordans\'sExcept";
+            this.exceptButton.UseVisualStyleBackColor = true;
+            this.exceptButton.Click += new System.EventHandler(this.exceptButton_Click);
+            // 
+            // row3Label
+            // 
+            this.row3Label.Location = new System.Drawing.Point(117, 10);
+            this.row3Label.Name = "row3Label";
+            this.row3Label.Size = new System.Drawing.Size(45, 14);
+            this.row3Label.TabIndex = 6;
+            this.row3Label.Text = "Row3:";
+            // 
+            // row3TextBox
+            // 
+            this.row3TextBox.Location = new System.Drawing.Point(168, 7);
+            this.row3TextBox.Multiline = true;
+            this.row3TextBox.Name = "row3TextBox";
+            this.row3TextBox.Size = new System.Drawing.Size(56, 22);
+            this.row3TextBox.TabIndex = 1;
+            this.row3TextBox.TextChanged += new System.EventHandler(this.row3TextBox_TextChanged);
+            // 
+            // col3Label
+            // 
+            this.col3Label.Location = new System.Drawing.Point(10, 10);
+            this.col3Label.Name = "col3Label";
+            this.col3Label.Size = new System.Drawing.Size(39, 14);
+            this.col3Label.TabIndex = 1;
+            this.col3Label.Text = "Col3:";
+            // 
+            // col3TextBox
+            // 
+            this.col3TextBox.Location = new System.Drawing.Point(55, 7);
+            this.col3TextBox.Multiline = true;
+            this.col3TextBox.Name = "col3TextBox";
+            this.col3TextBox.Size = new System.Drawing.Size(56, 22);
+            this.col3TextBox.TabIndex = 0;
+            this.col3TextBox.TextChanged += new System.EventHandler(this.col3TextBox_TextChanged);
             // 
             // closeButton
             // 
@@ -385,6 +528,15 @@
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             this.closeButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
             this.closeButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.tableLayoutPanel1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(809, 554);
+            this.panel3.TabIndex = 1;
             // 
             // Form1
             // 
@@ -411,6 +563,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.matrix1DataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.matrix3DataGridView)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -441,6 +603,16 @@
         private System.Windows.Forms.Button aliedButton;
         private System.Windows.Forms.Button transponationButton;
         private System.Windows.Forms.Button mulOnDigitButton;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.DataGridView matrix3DataGridView;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label row3Label;
+        private System.Windows.Forms.TextBox row3TextBox;
+        private System.Windows.Forms.Label col3Label;
+        private System.Windows.Forms.TextBox col3TextBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button exceptButton;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 

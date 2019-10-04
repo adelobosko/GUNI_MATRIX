@@ -16,6 +16,12 @@ namespace GUNI_MATRIX
             Denominator = denominator;
         }
 
+        public FractionValue(FractionValue fV)
+        {
+            this.Numerator = fV.Numerator;
+            this.Denominator = fV.Denominator;
+        }
+
         public FractionValue(string str)
         {
             var res = str.Split(Separator);
