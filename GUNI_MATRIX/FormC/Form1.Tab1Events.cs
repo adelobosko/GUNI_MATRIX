@@ -137,5 +137,72 @@ namespace GUNI_MATRIX
 
             resTextBox.Text += result.ToString();
         }
+
+
+
+        private void aliedButton_Click(object sender, EventArgs e)
+        {
+            if (matrix1DataGridView.RowCount != matrix1DataGridView.ColumnCount)
+            {
+                MessageBox.Show($"RowCount != ColCount");
+                return;
+            }
+
+            var arr1 = Matrix.GetFractialMatrixFromDataGrid(matrix1DataGridView);
+            var inDetal = new StringBuilder("");
+
+            var result = Matrix.Alied(arr1, ref inDetal);
+
+            resTextBox.Text = inDetal.ToString();
+            Matrix.PrintFractionMatrixToDataGrid(matrixResDataGridView, result);
+            resTextBox.Text += $"~A = \r\n{Matrix.GetStringMatrixByArray(result)}";
+        }
+
+
+
+        private void transponationButton_Click(object sender, EventArgs e)
+        {
+            if (matrix1DataGridView.RowCount != matrix1DataGridView.ColumnCount)
+            {
+                MessageBox.Show($"RowCount != ColCount");
+                return;
+            }
+
+            var arr1 = Matrix.GetFractialMatrixFromDataGrid(matrix1DataGridView);
+            var result = Matrix.Transposition(arr1);
+
+
+            Matrix.PrintFractionMatrixToDataGrid(matrixResDataGridView, result);
+            resTextBox.Text = $"At = \r\n{Matrix.GetStringMatrixByArray(result)}";
+        }
+
+
+        private void mulOnDigitButton_Click(object sender, EventArgs e)
+        {
+            var value = "";
+            if (TMP.InputBox("New document", "New document name:", ref value) != DialogResult.OK)
+            {
+                return;
+            }
+
+
+            var arr1 = Matrix.GetFractialMatrixFromDataGrid(matrix1DataGridView);
+            FractionValue fractionValue;
+            try
+            {
+                fractionValue = new FractionValue(value);
+            }
+            catch
+            {
+                MessageBox.Show($"I can not create FractionValue from this string \"{value}\"");
+                return;;
+            }
+
+            var result = Matrix.MultiplicateOnFractionValue(arr1, fractionValue);
+
+            Matrix.PrintFractionMatrixToDataGrid(matrixResDataGridView, result);
+            resTextBox.Text = $"A * {fractionValue} = \r\n{Matrix.GetStringMatrixByArray(result)}";
+
+        }
     }
 }

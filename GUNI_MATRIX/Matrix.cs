@@ -53,6 +53,22 @@ namespace GUNI_MATRIX
 
 
 
+        public static FractionValue[,] Transposition(FractionValue[,] a)
+        {
+            var res = new FractionValue[a.GetLength(0),a.GetLength(1)];
+
+            for (var i = 0; i < a.GetLength(0); i++)
+            {
+                for (var j = 0; j < a.GetLength(1); j++)
+                {
+                    res[i, j] = a[j, i];
+                }
+            }
+
+            return res;
+        }
+
+
         public static void PrintFractionMatrixToDataGrid(DataGridView dataGridView, FractionValue[,] res)
         {
             dataGridView.RowCount = res.GetLength(0);
@@ -163,7 +179,7 @@ namespace GUNI_MATRIX
                 str += "\r\n";
             }
 
-            return str + " = ";
+            return str;
         }
 
 
@@ -254,24 +270,67 @@ namespace GUNI_MATRIX
             }
 
             FractionValue sum = new FractionValue(0,1);
+
             for (var i = 0; i < a.GetLength(0); i++)
             {
                 var minor = GetMinor(a, 0, i);
-                var sign = (((1 + i) % 2 == 0) ? 1 : -1);
+                var sign = (((1 + i + 1) % 2 == 0) ? 1 : -1);
 
                 inDetal.Append($"+ [{i}] {sign} * {a[0, i]} * \r\n");
                 inDetal.Append($"{GetStringMatrixByArray(minor)} = \r\n");
 
                 var determinate = Determinate(minor, ref inDetal);
-                var mulit =  a[0, i] * determinate * sign;
+                var product =  a[0, i] * determinate * sign;
 
 
                 inDetal.Append($"+ [{i}] {a[0, i] * sign} * {determinate} = \r\n");
-                inDetal.Append($"+ [{i}] {mulit} \r\n\r\n\r\n");
-                sum += mulit;
+                inDetal.Append($"+ [{i}] {product} \r\n\r\n\r\n");
+                sum += product;
             }
 
             return sum;
+        }
+
+        public static FractionValue[,] Alied(FractionValue[,] a, ref StringBuilder inDetal)
+        {
+            var res = new FractionValue[a.GetLength(0), a.GetLength(1)];
+            
+            for (var i = 0; i < a.GetLength(0); i++)
+            {
+                for (var j = 0; j < a.GetLength(1); j++)
+                {
+                    var sign = ((i + 1 + j + 1) % 2 == 0) ? 1 : -1;
+                    var minor = GetMinor(a, i, j);
+
+                    inDetal.Append($"+ A[{i+1},{j+1}]] = {sign} * \r\n");
+                    inDetal.Append($"{GetStringMatrixByArray(minor)} = \r\n");
+
+                    var determinate = Determinate(minor, ref inDetal);
+                    var product = determinate * sign;
+
+                    inDetal.Append($"+ A[{i + 1},{j + 1}]] = {sign} * {determinate}\r\n");
+                    inDetal.Append($"+ A[{i + 1},{j + 1}]] = {product} \r\n\r\n\r\n");
+                    res[i, j] = product;
+                }
+            }
+
+            return res;
+        }
+
+
+        public static FractionValue[,] MultiplicateOnFractionValue(FractionValue[,] a, FractionValue b)
+        {
+            var res = new FractionValue[a.GetLength(0), a.GetLength(1)];
+
+            for (var i = 0; i < a.GetLength(0); i++)
+            {
+                for (var j = 0; j < a.GetLength(1); j++)
+                {
+                    res[i, j] = a[i,j] * b;
+                }
+            }
+
+            return res;
         }
     }
 }

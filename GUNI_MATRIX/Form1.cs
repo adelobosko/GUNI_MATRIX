@@ -22,6 +22,5 @@ namespace GUNI_MATRIX
 
             colM1TextBox.Focus();
         }
-
     }
 }

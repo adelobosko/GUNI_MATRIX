@@ -35,6 +35,10 @@
             this.matrix2DataGridView = new System.Windows.Forms.DataGridView();
             this.matrix1DataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.mulOnDigitButton = new System.Windows.Forms.Button();
+            this.transponationButton = new System.Windows.Forms.Button();
+            this.aliedButton = new System.Windows.Forms.Button();
+            this.detButton = new System.Windows.Forms.Button();
             this.swapButton = new System.Windows.Forms.Button();
             this.colM2Label = new System.Windows.Forms.Label();
             this.colM2TextBox = new System.Windows.Forms.TextBox();
@@ -48,7 +52,6 @@
             this.resTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.closeButton = new System.Windows.Forms.Button();
-            this.detButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -181,6 +184,9 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.mulOnDigitButton);
+            this.panel1.Controls.Add(this.transponationButton);
+            this.panel1.Controls.Add(this.aliedButton);
             this.panel1.Controls.Add(this.detButton);
             this.panel1.Controls.Add(this.swapButton);
             this.panel1.Controls.Add(this.colM2Label);
@@ -197,6 +203,58 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(986, 32);
             this.panel1.TabIndex = 3;
+            // 
+            // mulOnDigitButton
+            // 
+            this.mulOnDigitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mulOnDigitButton.Location = new System.Drawing.Point(883, 7);
+            this.mulOnDigitButton.Name = "mulOnDigitButton";
+            this.mulOnDigitButton.Size = new System.Drawing.Size(90, 22);
+            this.mulOnDigitButton.TabIndex = 9;
+            this.mulOnDigitButton.Text = "MulOnFraction";
+            this.mulOnDigitButton.UseVisualStyleBackColor = true;
+            this.mulOnDigitButton.Click += new System.EventHandler(this.mulOnDigitButton_Click);
+            this.mulOnDigitButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.mulOnDigitButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            // 
+            // transponationButton
+            // 
+            this.transponationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.transponationButton.Location = new System.Drawing.Point(787, 7);
+            this.transponationButton.Name = "transponationButton";
+            this.transponationButton.Size = new System.Drawing.Size(90, 22);
+            this.transponationButton.TabIndex = 9;
+            this.transponationButton.Text = "Transponation";
+            this.transponationButton.UseVisualStyleBackColor = true;
+            this.transponationButton.Click += new System.EventHandler(this.transponationButton_Click);
+            this.transponationButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.transponationButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            // 
+            // aliedButton
+            // 
+            this.aliedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aliedButton.Location = new System.Drawing.Point(691, 7);
+            this.aliedButton.Name = "aliedButton";
+            this.aliedButton.Size = new System.Drawing.Size(90, 22);
+            this.aliedButton.TabIndex = 9;
+            this.aliedButton.Text = "Allied";
+            this.aliedButton.UseVisualStyleBackColor = true;
+            this.aliedButton.Click += new System.EventHandler(this.aliedButton_Click);
+            this.aliedButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.aliedButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            // 
+            // detButton
+            // 
+            this.detButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.detButton.Location = new System.Drawing.Point(595, 7);
+            this.detButton.Name = "detButton";
+            this.detButton.Size = new System.Drawing.Size(90, 22);
+            this.detButton.TabIndex = 9;
+            this.detButton.Text = "Determinant";
+            this.detButton.UseVisualStyleBackColor = true;
+            this.detButton.Click += new System.EventHandler(this.detButton_Click);
+            this.detButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.detButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
             // swapButton
             // 
@@ -328,19 +386,6 @@
             this.closeButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
             this.closeButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
-            // detButton
-            // 
-            this.detButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.detButton.Location = new System.Drawing.Point(595, 7);
-            this.detButton.Name = "detButton";
-            this.detButton.Size = new System.Drawing.Size(90, 22);
-            this.detButton.TabIndex = 9;
-            this.detButton.Text = "Determinant";
-            this.detButton.UseVisualStyleBackColor = true;
-            this.detButton.Click += new System.EventHandler(this.detButton_Click);
-            this.detButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.detButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,6 +438,9 @@
         private System.Windows.Forms.Button swapButton;
         private System.Windows.Forms.TextBox resTextBox;
         private System.Windows.Forms.Button detButton;
+        private System.Windows.Forms.Button aliedButton;
+        private System.Windows.Forms.Button transponationButton;
+        private System.Windows.Forms.Button mulOnDigitButton;
     }
 }
 
