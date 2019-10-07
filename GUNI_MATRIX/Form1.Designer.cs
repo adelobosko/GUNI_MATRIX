@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.matrixResDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.sendToMatrix1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendToMatrix2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matrix2DataGridView = new System.Windows.Forms.DataGridView();
             this.matrix1DataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,16 +56,20 @@
             this.resTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.resJordansTextBox = new System.Windows.Forms.TextBox();
             this.matrix3DataGridView = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.progressLabel = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.exceptButton = new System.Windows.Forms.Button();
             this.row3Label = new System.Windows.Forms.Label();
             this.row3TextBox = new System.Windows.Forms.TextBox();
             this.col3Label = new System.Windows.Forms.Label();
             this.col3TextBox = new System.Windows.Forms.TextBox();
             this.closeButton = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.doubleToResMatrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -69,6 +77,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matrixResDataGridView)).BeginInit();
+            this.dataGridContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matrix2DataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrix1DataGridView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -78,8 +87,8 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matrix3DataGridView)).BeginInit();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -94,6 +103,7 @@
             this.tabControl1.Size = new System.Drawing.Size(1000, 618);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.TabStop = false;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
             // 
             // tabPage1
@@ -143,6 +153,7 @@
             this.matrixResDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.matrixResDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.matrixResDataGridView.ColumnHeadersVisible = false;
+            this.matrixResDataGridView.ContextMenuStrip = this.dataGridContextMenuStrip;
             this.matrixResDataGridView.Dock = System.Windows.Forms.DockStyle.Left;
             this.matrixResDataGridView.Location = new System.Drawing.Point(480, 32);
             this.matrixResDataGridView.MultiSelect = false;
@@ -155,6 +166,29 @@
             this.matrixResDataGridView.TabStop = false;
             this.matrixResDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.matrixDataGridView_EditingControlShowing);
             // 
+            // dataGridContextMenuStrip
+            // 
+            this.dataGridContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendToMatrix1ToolStripMenuItem,
+            this.sendToMatrix2ToolStripMenuItem,
+            this.doubleToResMatrixToolStripMenuItem});
+            this.dataGridContextMenuStrip.Name = "dataGridContextMenuStrip";
+            this.dataGridContextMenuStrip.Size = new System.Drawing.Size(181, 92);
+            // 
+            // sendToMatrix1ToolStripMenuItem
+            // 
+            this.sendToMatrix1ToolStripMenuItem.Name = "sendToMatrix1ToolStripMenuItem";
+            this.sendToMatrix1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendToMatrix1ToolStripMenuItem.Text = "SendToMatrix1";
+            this.sendToMatrix1ToolStripMenuItem.Click += new System.EventHandler(this.sendToMatrix1ToolStripMenuItem_Click);
+            // 
+            // sendToMatrix2ToolStripMenuItem
+            // 
+            this.sendToMatrix2ToolStripMenuItem.Name = "sendToMatrix2ToolStripMenuItem";
+            this.sendToMatrix2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendToMatrix2ToolStripMenuItem.Text = "SendToMatrix2";
+            this.sendToMatrix2ToolStripMenuItem.Click += new System.EventHandler(this.sendToMatrix2ToolStripMenuItem_Click);
+            // 
             // matrix2DataGridView
             // 
             this.matrix2DataGridView.AllowUserToAddRows = false;
@@ -166,6 +200,7 @@
             this.matrix2DataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.matrix2DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.matrix2DataGridView.ColumnHeadersVisible = false;
+            this.matrix2DataGridView.ContextMenuStrip = this.dataGridContextMenuStrip;
             this.matrix2DataGridView.Dock = System.Windows.Forms.DockStyle.Left;
             this.matrix2DataGridView.Location = new System.Drawing.Point(240, 32);
             this.matrix2DataGridView.MultiSelect = false;
@@ -188,6 +223,7 @@
             this.matrix1DataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.matrix1DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.matrix1DataGridView.ColumnHeadersVisible = false;
+            this.matrix1DataGridView.ContextMenuStrip = this.dataGridContextMenuStrip;
             this.matrix1DataGridView.Dock = System.Windows.Forms.DockStyle.Left;
             this.matrix1DataGridView.Location = new System.Drawing.Point(0, 32);
             this.matrix1DataGridView.MultiSelect = false;
@@ -284,7 +320,7 @@
             this.swapButton.TabIndex = 2;
             this.swapButton.Text = "Swap";
             this.swapButton.UseVisualStyleBackColor = true;
-            this.swapButton.Click += new System.EventHandler(this.swapButton_Click);
+            this.swapButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.swapButton_Click);
             // 
             // colM2Label
             // 
@@ -394,11 +430,12 @@
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 35);
+            this.splitContainer2.Location = new System.Drawing.Point(3, 36);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.resJordansTextBox);
             this.splitContainer2.Panel1.Controls.Add(this.matrix3DataGridView);
             this.splitContainer2.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
@@ -407,10 +444,22 @@
             this.splitContainer2.Panel2.Controls.Add(this.panel3);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(986, 554);
+            this.splitContainer2.Size = new System.Drawing.Size(986, 553);
             this.splitContainer2.SplitterDistance = 173;
             this.splitContainer2.TabIndex = 1;
             this.splitContainer2.TabStop = false;
+            // 
+            // resJordansTextBox
+            // 
+            this.resJordansTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.resJordansTextBox.Location = new System.Drawing.Point(0, 232);
+            this.resJordansTextBox.Multiline = true;
+            this.resJordansTextBox.Name = "resJordansTextBox";
+            this.resJordansTextBox.ReadOnly = true;
+            this.resJordansTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.resJordansTextBox.Size = new System.Drawing.Size(173, 321);
+            this.resJordansTextBox.TabIndex = 1;
+            this.resJordansTextBox.TabStop = false;
             // 
             // matrix3DataGridView
             // 
@@ -423,6 +472,7 @@
             this.matrix3DataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.matrix3DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.matrix3DataGridView.ColumnHeadersVisible = false;
+            this.matrix3DataGridView.ContextMenuStrip = this.dataGridContextMenuStrip;
             this.matrix3DataGridView.Dock = System.Windows.Forms.DockStyle.Top;
             this.matrix3DataGridView.Location = new System.Drawing.Point(0, 0);
             this.matrix3DataGridView.MultiSelect = false;
@@ -432,6 +482,15 @@
             this.matrix3DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.matrix3DataGridView.Size = new System.Drawing.Size(173, 232);
             this.matrix3DataGridView.TabIndex = 4;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.tableLayoutPanel1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(809, 553);
+            this.panel3.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -457,6 +516,8 @@
             // panel2
             // 
             this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.progressLabel);
+            this.panel2.Controls.Add(this.progressBar1);
             this.panel2.Controls.Add(this.exceptButton);
             this.panel2.Controls.Add(this.row3Label);
             this.panel2.Controls.Add(this.row3TextBox);
@@ -465,8 +526,23 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(986, 32);
+            this.panel2.Size = new System.Drawing.Size(986, 33);
             this.panel2.TabIndex = 3;
+            // 
+            // progressLabel
+            // 
+            this.progressLabel.Location = new System.Drawing.Point(617, 10);
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(177, 16);
+            this.progressLabel.TabIndex = 11;
+            this.progressLabel.Text = "0/100";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(350, 7);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(261, 23);
+            this.progressBar1.TabIndex = 10;
             // 
             // exceptButton
             // 
@@ -529,14 +605,12 @@
             this.closeButton.MouseEnter += new System.EventHandler(this.button_MouseEnter);
             this.closeButton.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             // 
-            // panel3
+            // doubleToResMatrixToolStripMenuItem
             // 
-            this.panel3.Controls.Add(this.tableLayoutPanel1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(809, 554);
-            this.panel3.TabIndex = 1;
+            this.doubleToResMatrixToolStripMenuItem.Name = "doubleToResMatrixToolStripMenuItem";
+            this.doubleToResMatrixToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.doubleToResMatrixToolStripMenuItem.Text = "DoubleToResMatrix";
+            this.doubleToResMatrixToolStripMenuItem.Click += new System.EventHandler(this.doubleToResMatrixToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -559,6 +633,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.matrixResDataGridView)).EndInit();
+            this.dataGridContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.matrix2DataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrix1DataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -566,13 +641,14 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.matrix3DataGridView)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -613,6 +689,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button exceptButton;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox resJordansTextBox;
+        private System.Windows.Forms.Label progressLabel;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ContextMenuStrip dataGridContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem sendToMatrix1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sendToMatrix2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem doubleToResMatrixToolStripMenuItem;
     }
 }
 

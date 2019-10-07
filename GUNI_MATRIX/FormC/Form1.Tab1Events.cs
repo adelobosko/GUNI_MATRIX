@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace GUNI_MATRIX
 {
-    partial class Form1
+    public partial class Form1
     {
         private void matrixDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -107,17 +107,28 @@ namespace GUNI_MATRIX
             catch { }
         }
 
-        private void swapButton_Click(object sender, EventArgs e)
+        private void swapButton_Click(object sender, MouseEventArgs e)
         {
-            var arr1 = Matrix.GetFractialMatrixFromDataGrid(matrix1DataGridView);
-            var arr2 = Matrix.GetFractialMatrixFromDataGrid(matrix2DataGridView);
+            DataGridView dataGridView1 = matrix1DataGridView;
+            DataGridView dataGridView2;
 
+            if (e.Button == MouseButtons.Right)
+            {
+                dataGridView2 = matrixResDataGridView;
+            }
+            else
+            {
+                dataGridView2 = matrix2DataGridView;
+            }
+
+
+            var arr1 = Matrix.GetFractialMatrixFromDataGrid(dataGridView1);
+            var arr2 = Matrix.GetFractialMatrixFromDataGrid(dataGridView2);
             colM1TextBox.Text = arr2.GetLength(1).ToString();
             rowM1TextBox.Text = arr2.GetLength(0).ToString();
-            colM2TextBox.Text = arr1.GetLength(1).ToString();
 
-            Matrix.PrintFractionMatrixToDataGrid(matrix1DataGridView, arr2);
-            Matrix.PrintFractionMatrixToDataGrid(matrix2DataGridView, arr1);
+            Matrix.PrintFractionMatrixToDataGrid(dataGridView1, arr2);
+            Matrix.PrintFractionMatrixToDataGrid(dataGridView2, arr1);
 
         }
         

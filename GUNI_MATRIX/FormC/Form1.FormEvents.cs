@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace GUNI_MATRIX
 {
-    partial class Form1
+    public partial class Form1
     {
         private void closeButton_Click(object sender, EventArgs e)
         {

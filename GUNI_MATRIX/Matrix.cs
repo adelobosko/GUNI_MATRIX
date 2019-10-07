@@ -149,6 +149,21 @@ namespace GUNI_MATRIX
             }
         }
 
+        public static void PrintDoubleMatrixToDataGrid(DataGridView dataGridView, FractionValue[,] res)
+        {
+            dataGridView.RowCount = res.GetLength(0);
+            dataGridView.ColumnCount = res.GetLength(1);
+
+
+            for (var i = 0; i < dataGridView.RowCount; i++)
+            {
+                for (var j = 0; j < dataGridView.ColumnCount; j++)
+                {
+                    dataGridView[j, i].Value = res[i, j].ToDouble();
+                }
+            }
+        }
+
 
         public static string GetStringMatrixByArray(double[,] a)
         {

@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Numerics;
 
 namespace GUNI_MATRIX
 {
     public struct FractionValue
     {
-        public int Numerator { get; set; }
-        public int Denominator { get; set; }
+
+        public BigInteger Numerator { get; set; }
+        public BigInteger Denominator { get; set; }
 
 
         public static readonly char Separator = '/';
@@ -16,6 +18,18 @@ namespace GUNI_MATRIX
             Denominator = denominator;
         }
 
+        public FractionValue(long numerator, long denominator)
+        {
+            Numerator = numerator;
+            Denominator = denominator;
+        }
+
+
+        public FractionValue(BigInteger numerator, BigInteger denominator)
+        {
+            Numerator = numerator;
+            Denominator = denominator;
+        }
         public FractionValue(FractionValue fV)
         {
             this.Numerator = fV.Numerator;
@@ -30,13 +44,13 @@ namespace GUNI_MATRIX
             {
                 if (res.Length == 2)
                 {
-                    Numerator = Convert.ToInt32(res[0]);
-                    Denominator = Convert.ToInt32(res[1]);
+                    Numerator = BigInteger.Parse(res[0]);
+                    Denominator = BigInteger.Parse(res[1]);
                 }
                 else
                 {
                     Denominator = 1;
-                    Numerator = Convert.ToInt32(str);
+                    Numerator = BigInteger.Parse(str);
                 }
             }
             catch
@@ -48,11 +62,11 @@ namespace GUNI_MATRIX
 
         public override string ToString()
         {
-            switch (Denominator)
+            switch (Denominator.ToString())
             {
-                case 1:
+                case "1":
                     return Numerator.ToString();
-                case -1:
+                case "-1":
                     Numerator *= -1;
                     Denominator = 1;
                     return Numerator.ToString();
@@ -65,10 +79,16 @@ namespace GUNI_MATRIX
 
         public double ToDouble()
         {
-            return (double)Numerator / Denominator;
+            return ((double)Numerator / (double)Denominator);
         }
 
-
+        static BigInteger gcd(BigInteger a, BigInteger b)
+        {
+            while (a != 0 && b != 0)
+                if (a > b) a %= b;
+                else b %= a;
+            return a + b;
+        }
         public static FractionValue DownSize(FractionValue fV)
         {
             while (true)
@@ -78,49 +98,39 @@ namespace GUNI_MATRIX
                     return fV;
                 }
 
-                var isDownSized = false;
-                var numeratorB = false;
-                var denominatorB = false;
 
+                var sign = 0;
                 if (fV.Numerator < 0)
                 {
+                    sign++;
                     fV.Numerator *= -1;
-                    numeratorB = true;
                 }
 
                 if (fV.Denominator < 0)
                 {
+                    sign++;
                     fV.Denominator *= -1;
-                    denominatorB = true;
                 }
 
-                var min = fV.Numerator > fV.Denominator ? fV.Denominator : fV.Numerator;
-
-
-                for (var i = min; i >= 2; i--)
+                var res = gcd(fV.Numerator, fV.Denominator);
+                if (res == 1 || res > fV.Numerator || res > fV.Denominator)
                 {
-                    if (fV.Numerator % i != 0 || fV.Denominator % i != 0) continue;
-
-                    fV.Numerator /= i;
-                    fV.Denominator /= i;
-                    isDownSized = true;
-                }
-
-                if (!(numeratorB && denominatorB))
-                {
-                    if (numeratorB)
+                    if (sign == 1)
                     {
                         fV.Numerator *= -1;
                     }
-
-                    if (denominatorB)
-                    {
-                        fV.Denominator *= -1;
-                    }
+                    return fV;
                 }
 
-                if (isDownSized) continue;
-                return fV;
+                if (sign == 1)
+                {
+                    fV.Numerator *= -1;
+                }
+                fV.Numerator /= res;
+                fV.Denominator /= res;
+
+                
+
             }
         }
 
@@ -142,7 +152,23 @@ namespace GUNI_MATRIX
 
         public static FractionValue operator +(FractionValue fvA, int b)
         {
-            var fvB = new FractionValue(b,1);
+            var fvB = new FractionValue(b, 1);
+            if (fvA.Denominator != fvB.Denominator)
+            {
+                fvA.Numerator *= fvB.Denominator;
+                fvB.Numerator *= fvA.Denominator;
+                fvA.Denominator *= fvB.Denominator;
+                fvA.Numerator += fvB.Numerator;
+                return DownSize(fvA);
+            }
+
+            fvA.Numerator += fvB.Numerator;
+            return DownSize(fvA);
+        }
+
+        public static FractionValue operator +(FractionValue fvA, BigInteger b)
+        {
+            var fvB = new FractionValue(b, 1);
             if (fvA.Denominator != fvB.Denominator)
             {
                 fvA.Numerator *= fvB.Denominator;
@@ -190,6 +216,23 @@ namespace GUNI_MATRIX
         }
 
 
+        public static FractionValue operator -(FractionValue fvA, BigInteger b)
+        {
+            var fvB = new FractionValue(b, 1);
+            if (fvA.Denominator != fvB.Denominator)
+            {
+                fvA.Numerator *= fvB.Denominator;
+                fvB.Numerator *= fvA.Denominator;
+                fvA.Denominator *= fvB.Denominator;
+                fvA.Numerator -= fvB.Numerator;
+                return DownSize(fvA);
+            }
+
+            fvA.Numerator -= fvB.Numerator;
+            return DownSize(fvA);
+        }
+
+
         public static FractionValue operator *(FractionValue fvA, FractionValue fvB)
         {
             fvA.Numerator *= fvB.Numerator;
@@ -198,6 +241,14 @@ namespace GUNI_MATRIX
         }
 
         public static FractionValue operator *(FractionValue fvA, int b)
+        {
+            var fvB = new FractionValue(b, 1);
+            fvA.Numerator *= fvB.Numerator;
+            fvA.Denominator *= fvB.Denominator;
+            return DownSize(fvA);
+        }
+
+        public static FractionValue operator *(FractionValue fvA, BigInteger b)
         {
             var fvB = new FractionValue(b, 1);
             fvA.Numerator *= fvB.Numerator;
@@ -214,6 +265,14 @@ namespace GUNI_MATRIX
         }
 
         public static FractionValue operator /(FractionValue fvA, int b)
+        {
+            var fvB = new FractionValue(b, 1);
+            fvA.Numerator *= fvB.Denominator;
+            fvA.Denominator *= fvB.Numerator;
+            return DownSize(fvA);
+        }
+
+        public static FractionValue operator /(FractionValue fvA, BigInteger b)
         {
             var fvB = new FractionValue(b, 1);
             fvA.Numerator *= fvB.Denominator;
